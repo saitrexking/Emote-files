@@ -1,0 +1,32 @@
+{% if not logged_in %}
+<h1>Admin Login</h1>
+<form method="post">
+<input type="password" name="password" placeholder="Admin Password">
+<button type="submit">Login</button>
+</form>
+{% else %}
+
+<h1>Admin Dashboard</h1>
+
+<h3>Add Emote</h3>
+<form method="post" action="/add_emote">
+<input name="id" placeholder="Emote ID">
+<input name="name" placeholder="Emote Name">
+<button type="submit">Add</button>
+</form>
+
+<h3>Maintenance</h3>
+<a href="/toggle_maintenance">Toggle Maintenance</a>
+
+<h3>Change User Password</h3>
+<form method="post" action="/change_password">
+<input name="new_password" placeholder="New Password">
+<button type="submit">Change</button>
+</form>
+
+<h3>Logs</h3>
+{% for log in logs %}
+<p>{{log.team_code}} | {{log.uid}} | {{log.emote_id}}</p>
+{% endfor %}
+
+{% endif %}
